@@ -4,8 +4,8 @@ This project implements a Treap, a randomized binary search tree (BST) that main
 
 ## Features
 
-- *Node Class*: Represents a single node in the Treap, holding a value, priority, and references to left, right, and parent nodes.
-- *Treap Class*: Manages the Treap structure, providing methods to initialize the Treap with a list of nodes and retrieve the size and root of the Treap.
+- **Node Class**: Represents a single node in the Treap, holding a value, priority, and references to left, right, and parent nodes.
+- **Treap Class**: Manages the Treap structure, providing methods to initialize the Treap with a list of nodes and retrieve the size and root of the Treap.
 
 ## Getting Started
 
