@@ -9,11 +9,11 @@ public class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
     private Node<T> left;
     private Node<T> right;
     private Node<T> parent;
-    private final Random r = new Random(Clock.systemUTC().instant().toEpochMilli());
 
     public Node(T value) {
         this.value = value;
-        this.pri = r.nextInt();
+        Random r = new Random(Clock.systemUTC().instant().toEpochMilli());
+        this.pri = Math.abs(r.nextInt());
         this.left = null;
         this.right = null;
         this.parent = null;
@@ -89,8 +89,40 @@ public class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
         this.parent = parent;
     }
 
+    public boolean hasLeft() {
+        return this.getLeft() != null;
+    }
+
+    public boolean hasRight() {
+        return this.getRight() != null;
+    }
+
+    public boolean hasChild() {
+        return this.hasLeft() || this.hasRight();
+    }
+
+    public boolean hasTowChildren() {
+        return this.hasLeft() && this.hasRight();
+    }
+
+    public boolean isLeftChild(Node<T> parent) {
+        if (parent == null)
+            return false;
+
+        else
+            return parent.getLeft() == this;
+    }
+
+    public boolean isRightChild(Node<T> parent) {
+        if (parent == null)
+            return false;
+
+        else
+            return parent.getRight() == this;
+    }
+
     @Override
-    public int compareTo(Node<T> o) throws ClassCastException {
+    public int compareTo(Node<T> o) {
         return Integer.compare(this.pri, o.pri);
     }
 }

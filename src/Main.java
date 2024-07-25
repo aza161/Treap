@@ -18,6 +18,11 @@ public class Main {
         //10 10 35 20 10 30 56 40 42 50 25 60 17 70 80 80 65 90 15 95 32
         Treap<Integer> tree = new Treap<Integer>(list);
         tree.printTreap();
+        System.out.printf("Treap size before insertion: %d\n", tree.getSize());
+        tree.insert(new Node<Integer>(45, 67));
+        System.out.println("\nAfter inserting (45, 67):\n");
+        tree.printTreap();
+        System.out.printf("Treap size after insertion: %d", tree.getSize());
 
     }
 }
