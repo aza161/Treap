@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Treap<T extends Comparable<T>> implements Comparable<Treap<T>> {
-    Node<T> head = null;
+    private Node<T> head = null;
     private int size;
 
     public Treap(List<Node<T>> nodeList) {
@@ -129,6 +129,10 @@ public class Treap<T extends Comparable<T>> implements Comparable<Treap<T>> {
 
     public void printTreap() {
         inOrder(this.head);
+    }
+
+    public Node<T> getHead(){
+        return this.head;
     }
 
     private void inOrder(Node<T> node) {
