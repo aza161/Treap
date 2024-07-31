@@ -3,9 +3,12 @@ package Treap;
 import java.util.Collections;
 import java.util.List;
 
-public class Treap<T extends Comparable<T>> implements Comparable<Treap<T>> {
+public class Treap<T extends Comparable<T>> {
     private Node<T> head = null;
-    private int size;
+    private int size = 0;
+
+    public Treap() {
+    }
 
     public Treap(List<Node<T>> nodeList) {
         this.size = nodeList.size();
@@ -30,6 +33,18 @@ public class Treap<T extends Comparable<T>> implements Comparable<Treap<T>> {
                     prev.setLeft(node);
             }
         }
+
+        /*for (Node<T> node : nodeList) {
+            this.insert(node);
+        }*/
+    }
+
+    public Node<T> getHead() {
+        return this.head;
+    }
+
+    public int getSize() {
+        return this.size;
     }
 
     public void insert(Node<T> node) {
@@ -62,6 +77,47 @@ public class Treap<T extends Comparable<T>> implements Comparable<Treap<T>> {
             }
         }
         ++this.size;
+    }
+
+    public Node<T> remove() {
+        if (this.head == null) return null;
+
+        if (!this.head.hasChild()) {
+            Node<T> temp = this.head;
+            this.head = null;
+            --this.size;
+            return temp;
+        }
+
+
+        Node<T> removed = this.head;
+
+        while (removed.hasChild()) {
+
+            if (removed.hasTwoChildren() && removed.getLeft().compareTo(removed.getRight()) >= 0)
+                rightRotate(removed);
+
+            else if (removed.hasTwoChildren() && removed.getLeft().compareTo(removed.getRight()) < 0)
+                leftRotate(removed);
+
+            else if (removed.hasLeft())
+                rightRotate(removed);
+
+            else
+                leftRotate(removed);
+        }
+
+        Node<T> parent = removed.getParent();
+
+        if (parent != null && parent.getLeft() == removed)
+            parent.setLeft(null);
+
+        else if (parent != null)
+            parent.setRight(null);
+
+        --this.size;
+
+        return removed;
     }
 
     private void rightRotate(Node<T> node) {
@@ -118,21 +174,8 @@ public class Treap<T extends Comparable<T>> implements Comparable<Treap<T>> {
         node.setParent(rightChild);
     }
 
-    public int getSize() {
-        return size;
-    }
-
-    @Override
-    public int compareTo(Treap<T> o) {
-        return 0;
-    }
-
     public void printTreap() {
         inOrder(this.head);
-    }
-
-    public Node<T> getHead(){
-        return this.head;
     }
 
     private void inOrder(Node<T> node) {

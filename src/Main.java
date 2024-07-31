@@ -22,7 +22,10 @@ public class Main {
         tree.insert(new Node<Integer>(45, 67));
         System.out.println("\nAfter inserting (45, 67):\n");
         tree.printTreap();
-        System.out.printf("Treap size after insertion: %d", tree.getSize());
+        System.out.printf("Treap size after insertion: %d\n", tree.getSize());
+        while (tree.getSize() > 0) {
+            System.out.println(tree.remove().getPri());
+        }
 
     }
 }

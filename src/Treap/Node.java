@@ -4,7 +4,7 @@ import java.time.Clock;
 import java.util.Random;
 
 public class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
-    private T value;
+    private final T value;
     private int pri;
     private Node<T> left;
     private Node<T> right;
@@ -53,16 +53,8 @@ public class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
         return value;
     }
 
-    public void setValue(T value) {
-        this.value = value;
-    }
-
     public int getPri() {
         return pri;
-    }
-
-    public void setPri(int pri) {
-        this.pri = pri;
     }
 
     public Node<T> getLeft() {
@@ -101,7 +93,7 @@ public class Node<T extends Comparable<T>> implements Comparable<Node<T>> {
         return this.hasLeft() || this.hasRight();
     }
 
-    public boolean hasTowChildren() {
+    public boolean hasTwoChildren() {
         return this.hasLeft() && this.hasRight();
     }
 
